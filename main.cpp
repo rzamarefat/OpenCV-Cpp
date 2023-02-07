@@ -52,44 +52,64 @@ using namespace cv;
 
 
 // ==========================> image basic pre-processing
-int main(){
-	string path = "/home/rzamarefat/cpp-opencv/resources/brad.jpeg";
+// int main(){
+// 	string path = "/home/rzamarefat/cpp-opencv/resources/brad.jpeg";
 
-	Mat img = imread(path);
+// 	Mat img = imread(path);
 	
 
-	// ===> Grayscale
+	// // ===> Grayscale
 	// Mat garyImage;
 	// cvtColor(img, garyImage, COLOR_BGR2GRAY);
 	// imshow("Image Gray", garyImage);
 
 
 
-	// ===> Blurring
+	// // ===> Blurring
 	// Mat blurredImage;
 	// GaussianBlur(img, blurredImage, Size(7, 7), 5, 0);
 	// imshow("Blurred Image", blurredImage);
 
 
-	// ===> Edge Detection
-	Mat blurredImage;
-	Mat cannyImage;
-	Mat dilateImage;
-	Mat erodeImage;
+	// // ===> Edge Detection
+	// Mat blurredImage;
+	// Mat cannyImage;
+	// Mat dilateImage;
+	// Mat erodeImage;
 
-	GaussianBlur(img, blurredImage, Size(7, 7), 5, 0);
-	Canny(blurredImage, cannyImage, 50, 150);
+	// GaussianBlur(img, blurredImage, Size(7, 7), 5, 0);
+	// Canny(blurredImage, cannyImage, 50, 150);
 	
-	Mat kernel = getStructuringElement(MORPH_RECT, Size(5, 5));
-	dilate(cannyImage, dilateImage, kernel);
-	erode(dilateImage, erodeImage, kernel);
+	// Mat kernel = getStructuringElement(MORPH_RECT, Size(5, 5));
+	// dilate(cannyImage, dilateImage, kernel);
+	// erode(dilateImage, erodeImage, kernel);
 	
-	imshow("Canny Image", cannyImage);
-	imshow("Dilated Image", dilateImage);
-	imshow("Eroded Image", erodeImage);
+	// imshow("Canny Image", cannyImage);
+	// imshow("Dilated Image", dilateImage);
+	// imshow("Eroded Image", erodeImage);
 
 
-	waitKey(0);
+	// waitKey(0);
 
-	return 0;
+// 	return 0;
+// }
+
+
+// ==========================> image basic pre-processing
+int main(){
+	string path = "./resources/brad_and_anjelina.png";
+	Mat img = imread(path);
+	Mat resizedImage;
+
+	the following line shows the default size of the image
+	cout << img.size() << endl; 
+
+
+	resize(img, resizedImage, Size(1000, 1000));
+
+
+	imshow("Default image", img);
+	imshow("Resize image", resizedImage);
+
+	return 1;
 }
