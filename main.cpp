@@ -51,7 +51,7 @@ using namespace cv;
 // }
 
 
-// ==========================> image pre-processing
+// ==========================> image basic pre-processing
 int main(){
 	string path = "/home/rzamarefat/cpp-opencv/resources/brad.jpeg";
 
@@ -59,30 +59,35 @@ int main(){
 	
 
 	// ===> Grayscale
-	// Mat img_gray;
-	// cvtColor(img, img_gray, COLOR_BGR2GRAY);
-	// imshow("Image Gray", img_gray);
+	// Mat garyImage;
+	// cvtColor(img, garyImage, COLOR_BGR2GRAY);
+	// imshow("Image Gray", garyImage);
 
 
 
 	// ===> Blurring
-	// Mat blurred_img;
-	// GaussianBlur(img, blurred_img, Size(7, 7), 5, 0);
-	// imshow("Blurred Image", blurred_img);
+	// Mat blurredImage;
+	// GaussianBlur(img, blurredImage, Size(7, 7), 5, 0);
+	// imshow("Blurred Image", blurredImage);
 
 
 	// ===> Edge Detection
-	Mat blurred_img;
-	Mat canny_img;
-	GaussianBlur(img, blurred_img, Size(7, 7), 5, 0);
-	Canny(blurred_img, canny_img, 50, 150);
-	imshow("Canny Image", canny_img);
+	Mat blurredImage;
+	Mat cannyImage;
+	Mat dilateImage;
+	Mat erodeImage;
 
+	GaussianBlur(img, blurredImage, Size(7, 7), 5, 0);
+	Canny(blurredImage, cannyImage, 50, 150);
 	
+	Mat kernel = getStructuringElement(MORPH_RECT, Size(5, 5));
+	dilate(cannyImage, dilateImage, kernel);
+	erode(dilateImage, erodeImage, kernel);
+	
+	imshow("Canny Image", cannyImage);
+	imshow("Dilated Image", dilateImage);
+	imshow("Eroded Image", erodeImage);
 
-
-	
-	
 
 	waitKey(0);
 
